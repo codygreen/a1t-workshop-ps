@@ -1,0 +1,5 @@
+datacenter: UDF
+serverDeviceIP: 10.1.10.10
+serverVIP: 10.1.10.11
+DNSListenerIP: 10.1.10.5
+WIP: test.f5demos.com

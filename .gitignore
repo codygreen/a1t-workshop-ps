@@ -1,2 +1,5 @@
 vault.*
 roles/f5devcentral*
+
+# generated declaration
+files/*.json
