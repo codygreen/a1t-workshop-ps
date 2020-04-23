@@ -7,11 +7,16 @@
       user: admin
       password: "{{ password }}"
       validate_certs: false
+    template_source: "./templates/dns.as3.j2"
+    template_destination: "./files/dns.as3.json"
   vars_files:
     - "./vault.yml"
+    - "./data/data.yml"
   tasks:
     - name: Create the declaration
       template:
+        src: "{{ template_source }}"
+        dest: "{{ template_destination }}"
 
     - name: ATC POST
       include_role:
@@ -20,7 +25,7 @@
         atc_method: POST
         # atc_declaration_url: https://testurl/as3.json
         # AS3/Device/Telemetry is selected by looking at the class within the file
-        atc_declaration_file: test.as3.json
+        atc_declaration_file: "{{ template_destination }}"
         atc_delay: 10
         atc_retries: 5
     # atc_AS3_status, atc_DO_status , atc_TS_status

@@ -12,7 +12,7 @@
             "Shared": {
                 "class": "Application",
                 "template": "shared",
-                "UDF": {
+                "{{ datacenter }}": {
                     "class": "GSLB_Data_Center"
                 },
                 "vs_monitor": {
@@ -27,10 +27,10 @@
                         "use": "UDF"
                     },
                     "devices": [{
-                        "address": "10.1.10.10"
+                        "address": "{{ serverDeviceIP }}"
                     }],
                     "virtualServers": [{
-                        "address": "10.1.10.11",
+                        "address": "{{ serverVIP }}",
                         "port": 80,
                         "monitors": [{
                             "use": "vs_monitor"
@@ -61,7 +61,7 @@
                 "testUDP": {
                     "class": "Service_UDP",
                     "virtualAddresses": [
-                        "10.1.10.5"
+                        "{{ DNSListenerIP }}"
                     ],
                     "virtualPort": 53,
                     "profileDNS": {
@@ -74,7 +74,7 @@
                 "testTCP": {
                     "class": "Service_TCP",
                     "virtualAddresses": [
-                        "10.1.10.5"
+                        "{{ DNSListenerIP }}"
                     ],
                     "virtualPort": 53,
                     "profileDNS": {
@@ -85,9 +85,9 @@
                     }
                 },
 
-                "test.f5demos.com": {
+                "{{ WIP }}": {
                     "class": "GSLB_Domain",
-                    "domainName": "test.f5demos.com",
+                    "domainName": "{{ WIP }}",
                     "resourceRecordType": "A",
                     "poolLbMode": "ratio",
                     "pools": [{
