@@ -1,0 +1,27 @@
+- name: POST AT Declaration
+  hosts: localhost
+  vars:
+    provider:
+      server: "{{ bigip }}"
+      server_port: 443
+      user: admin
+      password: "{{ password }}"
+      validate_certs: false
+  vars_files:
+    - "./vault.yml"
+  tasks:
+    - name: Create the declaration
+      template:
+
+    - name: ATC POST
+      include_role:
+        name: f5devcentral.atc_deploy
+      vars:
+        atc_method: POST
+        # atc_declaration_url: https://testurl/as3.json
+        # AS3/Device/Telemetry is selected by looking at the class within the file
+        atc_declaration_file: test.as3.json
+        atc_delay: 10
+        atc_retries: 5
+    # atc_AS3_status, atc_DO_status , atc_TS_status
+    - debug: var=atc_AS3_status

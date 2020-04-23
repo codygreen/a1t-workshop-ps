@@ -1,0 +1,5 @@
+---
+- name: build declaration
+  template:
+    src: "{{ template_source }}"
+    dest: "{{ template_destination }}"
